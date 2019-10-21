@@ -13,6 +13,7 @@ What I gained is:
 
 
 For the time being, this code is modified to following the flux pattern yet.
+
 src
 ├── containers
 │   └── AppContainer.js
