@@ -4,18 +4,19 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
 
 export default function Login(props) {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return username.length > 0 && password.length > 0;
   }
 
   async function handleSubmit(event) {
     	event.preventDefault();
   	try {
-  	  await Auth.signIn(email, password);
-  	  alert("Logged in");
+  	  await Auth.signIn(username, password);
+	  console.log(props);
+	  props.userHasAuthenticated(true);
   	} catch (e) {
   	  alert(e.message);
   	}
@@ -24,13 +25,13 @@ export default function Login(props) {
   return (
     <div className="Login">
       <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" bsSize="large">
-          <ControlLabel>Email</ControlLabel>
+        <FormGroup controlId="username" bsSize="large">
+          <ControlLabel>UserName</ControlLabel>
           <FormControl
             autoFocus
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            type="text"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
           />
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
